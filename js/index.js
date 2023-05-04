@@ -5,7 +5,8 @@ function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
+let resetbuttons= Array.from( document.getElementsByClassName("resetbutton"));
+resetbuttons.forEach( (resetbtn)=> {resetbtn.addEventListener("click", ()=>{location.reload()} ) } )
 //disable all button on start of a sorting
 function DisableAllSortButtonOnStart() {
     let allsortbutton = document.getElementsByClassName("button");
@@ -49,7 +50,6 @@ function changebgcolor(ele, color) {
 
 
 // //to set height of element on button click
-
 function OpenandCloseSortContainer(currentid) {
     let currentele = document.getElementById(currentid + "sort");
     let currentsort = currentele.firstElementChild;
@@ -94,6 +94,11 @@ async function pause(sortname){
             break;
         case "merge":
             while (mergepause) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+            break;
+        case "heap":
+            while (heappause) {
                 await new Promise(resolve => setTimeout(resolve, 100));
             }
             break;
@@ -198,7 +203,6 @@ function pausetoggle(event){
         selectionpause = false;
         insertionpause = false;
         quickpause = false;
-        mergepause = false;
     }
 }
 
@@ -251,7 +255,7 @@ document.getElementById("bubble").addEventListener("click", async (event) => {
 //bubble sort 
 let bubblestart = document.getElementById("bubblestart");
 bubblestart.addEventListener('click', async (event) => {
-    if(event.target.innerHTML==="Reset"){
+    if(event.target.innerHTML==="New Input Array"){
         createbars(document.getElementById("bubble"), "bbar", 1, "bubble");
     }
     else{
@@ -293,12 +297,12 @@ bubblestart.addEventListener('click', async (event) => {
 
         }
         await pause("bubble");
-        changebgcolor(document.getElementById("bbar" + (n - i - 1)), "lightgreen");
+        changebgcolor(document.getElementById("bbar" + (n - i - 1)), "azure");
     }
     //first element is not marked yet so mark it green
-    changebgcolor(document.getElementById("bbar" + 0), "lightgreen");
+    changebgcolor(document.getElementById("bbar" + 0), "azure");
     pausebutton.disabled=true;
-    event.target.innerHTML="Reset";
+    event.target.innerHTML="New Input Array";
     event.target.disabled =false;
     EnableAllSortButtonOnStart();
     document.getElementById("result1").innerHTML = "Output Array : " + arr;
@@ -316,7 +320,7 @@ document.getElementById("selection").addEventListener("click", (event) => {
 let selectionstart = document.getElementById("selectionstart");
 selectionstart.addEventListener('click', async (event) => {
 
-    if(event.target.innerHTML==="Reset"){
+    if(event.target.innerHTML==="New Input Array"){
         createbars(document.getElementById("selection"), "sbar", 2, "selection");
     }
     else{
@@ -368,22 +372,22 @@ selectionstart.addEventListener('click', async (event) => {
                 speed = 5000 / document.getElementById("speed2").value;
                 await swapelement(ele1, ele2, speed,"selection");
                 
-                //mark element brought to first lightgreen i.e. it is at correct position and other as aqua
-                changebgcolor(ele2, "lightgreen");
+                //mark element brought to first azure i.e. it is at correct position and other as aqua
+                changebgcolor(ele2, "azure");
                 changebgcolor(ele1, "aqua");
                 await pause("selection");
                 await sleep(speed / 4);
             }
             else {
-                //means first element is at correct position so mark it lightgreen 
-                changebgcolor(ele1, "lightgreen");
+                //means first element is at correct position so mark it azure 
+                changebgcolor(ele1, "azure");
     
             }
             await pause("selection");
 
         }
         pausebutton.disabled=true;
-        event.target.innerHTML="Reset";
+        event.target.innerHTML="New Input Array";
         event.target.disabled =false;
         EnableAllSortButtonOnStart();
         document.getElementById("result2").innerHTML = "Output Array : " + arr;
@@ -400,7 +404,7 @@ document.getElementById("insertion").addEventListener("click", (event) => {
 //insertion sort
 let insertionstart = document.getElementById("insertionstart");
 insertionstart.addEventListener('click', async (event) => {
-    if(event.target.innerHTML==="Reset"){
+    if(event.target.innerHTML==="New Input Array"){
         createbars(document.getElementById("insertion"), "ibar", 3, "insertion")
     }
     else{
@@ -424,7 +428,7 @@ insertionstart.addEventListener('click', async (event) => {
             ele1.style.transform = "translateY(-50px)";
 
 
-            changebgcolor(ele1, "lightgreen")
+            changebgcolor(ele1, "azure")
             await sleep(speed / 4);
 
             let j = i - 1;
@@ -452,7 +456,7 @@ insertionstart.addEventListener('click', async (event) => {
             arr[j + 1] = key;
         }
         pausebutton.disabled=true;
-        event.target.innerHTML="Reset";
+        event.target.innerHTML="New Input Array";
         event.target.disabled =false;
         EnableAllSortButtonOnStart();
 
@@ -477,7 +481,7 @@ async function partition(arr, left, right) {
     }
     await sleep(speed / 4);
     let pivotele = document.getElementById("qbar" + right);
-    changebgcolor(pivotele, "lightgreen");
+    changebgcolor(pivotele, "azure");
     pivotele.style.transform = "translateY(-60px)"
     await sleep(speed / 4);
     const pivot = arr[right];
@@ -540,7 +544,7 @@ async function quickSort(arr, left = 0, right = arr.length - 1) {
 }
 //click on quick start button
 document.getElementById("quickstart").addEventListener('click', async (event) => {
-    if(event.target.innerHTML==="Reset"){
+    if(event.target.innerHTML==="New Input Array"){
         createbars(document.getElementById("quick"), "qbar", 4, "quick");
 
     }
@@ -560,7 +564,7 @@ document.getElementById("quickstart").addEventListener('click', async (event) =>
         let newarr = await quickSort(arr);
 
         pausebutton.disabled=true;
-        event.target.innerHTML="Reset";
+        event.target.innerHTML="New Input Array";
         event.target.disabled =false;  
 
         EnableAllSortButtonOnStart();
@@ -627,6 +631,10 @@ function createleftRightbar(side, i, parent, width) {
 }
 async function merge(arr, l, m, r) {
     let speed = 5000 / document.getElementById("speed5").value;
+    for(let i=l;i<=r;i++){
+        document.getElementById("mbar"+i).style.background="azure";
+        await sleep(speed / 4);
+    }
     var n1 = m - l + 1;
     var n2 = r - m;
     var L = new Array(n1);
@@ -687,6 +695,9 @@ async function merge(arr, l, m, r) {
     }
     clearbars(left);
     clearbars(right);
+    for(let i=l;i<=r;i++){
+        document.getElementById("mbar"+i).style.background="aqua";
+    }
 }
 
 async function mergeSort(arr, l, r) {
@@ -699,9 +710,8 @@ async function mergeSort(arr, l, r) {
     await merge(arr, l, m, r);
 }
 //click on merge start
-let mergestart = document.getElementById("mergestart");
-mergestart.addEventListener('click', async (event) => {
-    if(event.target.innerHTML==="Reset"){
+document.getElementById("mergestart").addEventListener('click', async (event) => {
+    if(event.target.innerHTML==="New Input Array"){
         createbars(document.getElementById("merge"), "mbar", 5, "merge");
     }
     else{
@@ -727,7 +737,7 @@ mergestart.addEventListener('click', async (event) => {
         showmerge.style.border = "none";
 
         pausebutton.disabled=true;
-        event.target.innerHTML="Reset";
+        event.target.innerHTML="New Input Array";
         event.target.disabled =false;  
         EnableAllSortButtonOnStart();
 

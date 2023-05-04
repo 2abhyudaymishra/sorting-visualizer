@@ -14,6 +14,7 @@ section {
   transform: translateX(-50%);
   height: 300px;
 }
+
 h1 {
   color: #f1c01c;
   margin: 0;
@@ -382,5 +383,8 @@ td {
   }
   pre {
     font-size: x-small;
+  }
+  .resetbutton{
+    margin-top: 20px;
   }
 }
