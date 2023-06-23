@@ -14,7 +14,7 @@ This is a web application that visualizes the process of sorting an array using 
 
 ## Link to view site
 
-[Site](https://2abhyudaymishra.github.io/sorting-visualizer/)
+[View Project](https://2abhyudaymishra.github.io/sorting-visualizer/)
 
 ## Technologies Used
 
