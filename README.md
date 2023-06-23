@@ -1,6 +1,6 @@
 # Sorting Visualizer
 
-This is a web application that visualizes the process of sorting an array using various sorting algorithms, including Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, Quick Sort, and Merge Sort. The application is built using HTML, CSS, and JavaScript and is hosted on GitHub.
+This is a web application that visualizes the process of sorting an array using various sorting algorithms, including Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, Quick Sort, and Merge Sort.
 
 ## Features
 
@@ -12,9 +12,7 @@ This is a web application that visualizes the process of sorting an array using 
 - Provides brief information about each sorting algorithm, including its time complexity.
 - Provides code snippets for each sorting algorithm in three different programming languages: C++, Java, and Python.
 
-## Link to view site
-
-[View Project](https://2abhyudaymishra.github.io/sorting-visualizer/)
+## [Link to view site](https://2abhyudaymishra.github.io/sorting-visualizer/)
 
 ## Technologies Used
 
