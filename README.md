@@ -12,9 +12,9 @@ This is a web application that visualizes the process of sorting an array using 
 - Provides brief information about each sorting algorithm, including its time complexity.
 - Provides code snippets for each sorting algorithm in three different programming languages: C++, Java, and Python.
 
-## Getting Started
+## Link to view site
 
-To get started with the application, simply visit the [live demo](https://2abhyudaymishra.github.io/sorting-visualizer/). You can then adjust the settings using the sliders and click the "Sort" button to visualize the sorting process. To generate a new random array, click on the name of the sorting algorithm. To pause or resume the sorting process, click the "Pause" or "Resume" button.
+[Site](https://2abhyudaymishra.github.io/sorting-visualizer/)
 
 ## Technologies Used
 
